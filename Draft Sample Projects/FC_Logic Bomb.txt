@@ -1,0 +1,2132 @@
+﻿SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:02 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+FC540 - <offline>
+"GRP001_DVC_LGC"     
+Name: Family:
+Author: Version: 0.1
+
+Block version: 2
+Time stamp Code: 05/20/2025 02:28:57 PM
+
+Interface: 04/10/2012 06:29:49 PM
+Lengths (block/logic/data): 03972  03774  00026
+
+ Name  Data Type  Address  Comment 
+
+  IN 0.0
+
+  OUT 0.0
+
+  IN_OUT 0.0
+
+  TEMP 0.0
+
+    NEWTR_SPD_PASS_01 Real 0.0
+
+    NEWTR_SPD_PASS_02 Real 4.0
+
+    NEWTR_SPD_CMD_01 Real 8.0
+
+    NEWTR_SPD_CMD_02 Real 12.0
+
+  RETURN 0.0
+
+    RET_VAL 0.0
+
+Block: FC540        
+
+Network: 1        GAF11AP001 : NEWate Feed Pump A 
+
+Linking, 0=Operator Active
+
+""GAF11AP0
+01".LIOP_S
+
+EL"
+Select :
+1=Linking,
+
+& 0=Operato
+""GRP001_C r Active
+ONTROL".GR DB502.
+P_MANUAL" DBX0.1
+
+DB201. =
+DBX2.1
+
+Network: 2        GAF11AP001 : NEWate Feed Pump A 
+
+Linkable Input for MANUAL/AUTO Mode
+
+""GAF11AP0
+01".AUT_L"
+Linkable
+Input for
+
+& MANUAL/AUT
+""GRP001_C O Mode
+ONTROL".GR DB502.
+P_AUTO" DBX0.2
+
+DB201. =
+DBX2.0
+
+                                                                                   Page 1 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:02 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 3        GAF11AP001 : NEWate Feed Pump A  
+
+AUTO Mode command; 1=ON, 0=OFF
+
+""GAF11AP0
+01".AUTO_O
+
+& N"
+""GAF11/12 AUTO Mode
+AP001_DTYS command;
+TB".START_ 1=ON,
+
+A" 0=OFF
+Start DB502.
+Pump A DBX0.6
+DB202. =
+DBX12.1
+
+Network: 4        GAF11AP001 : NEWate Feed Pump A  
+
+Linkable Input RESET
+
+""GAF11AP0
+01".L_RESE
+
+T"
+Linkable
+
+& Input
+""GRP001_C RESET
+ONTROL".GR DB502.
+P_RESET" DBX0.3
+
+DB201. =
+DBX2.2
+
+                                                                                   Page 2 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:02 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 5        GAF11AP001 : NEWate Feed Pump A Ramp Control
+
+&
+"@LOG_1" &
+
+M0.1
+
+CMP ==I
+""GAF11/12
+AP001_DTYS
+TB".PUMP_R
+
+B"
+DUTY PUMP
+A OR B
+RADIO
+BUTTON
+1=A, 2=B
+
+DB202.
+DBW42 IN1
+
+MOVE
+1 IN2 EN
+
+""GAF11AP0 "#NEWTR_SP
+01".QFB_SP D_PASS_01"
+
+EED" #NEWTR_
+Scaled SPD_PASS_
+speed OUT 01
+DB502.
+DBD52 IN ENO
+
+MOVE
+EN
+
+""GAF11AP0
+01".QSPEED
+
+_R" "#NEWTR_SP
+Speed D_CMD_01"
+
+commmand #NEWTR_
+real OUT SPD_CMD_01
+DB502.
+DBD48 IN ENO
+
+&
+
+CMP ==I
+""GAF11/12
+AP001_DTYS
+TB".PUMP_R
+
+B"
+DUTY PUMP
+A OR B
+RADIO
+BUTTON
+1=A, 2=B
+
+DB202.
+DBW42 IN1
+
+MOVE
+2 IN2 EN
+
+""GAF12AP0 "#NEWTR_SP
+01".QFB_SP D_PASS_01"
+
+EED" #NEWTR_
+Scaled SPD_PASS_
+speed OUT 01
+DB503.
+DBD52 IN ENO
+
+MOVE
+EN
+
+""GAF12AP0
+01".QSPEED
+
+_R" "#NEWTR_SP
+Speed D_CMD_01"
+
+commmand #NEWTR_
+real OUT SPD_CMD_01
+DB503.
+DBD48 IN ENO
+
+"GAF11AP00
+1_RAMP"
+
+                                                                                   Page 3 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:03 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+1_RAMP"
+DB204
+
+"RAMP_GEN"
+FB2
+
+EN
+
+""UF_A_SEQ
+".STRT_FEE
+D_PMP_RAMP
+
+_UP"
+START
+FEED
+PUMPS
+
+RAMPING UP
+DB212.
+
+DBX196.1 REQ1
+
+REQ2
+
+""UF_A_SEQ
+".STRT_FEE
+D_PMP_RAMP
+_DOWN"
+START
+FEED
+PUMPS
+RAMPING
+DOWN
+DB212.
+
+DBX196.2 REQ3
+
+REQ4
+
+REQ5
+
+REQ6
+
+REQ7
+
+REQ8
+
+""PROCESS_
+SP".SP_FD_
+PMP_STRT_S
+PD_SP"
+UF FEED
+PUMP
+
+INITIAL
+START
+
+SPEED SET
+POINT IN %
+
+DB100.
+DBD664 X1
+
+""PROCESS_
+SP".SP_FD_
+PMP_RAMP_U
+P_TIME"
+UF FEED
+PUMP TIME
+DURATION
+FOR SPEED
+RAMPING
+UP IN
+SECONDS
+
+DB100.
+DBD672 Td1
+
+""PROCESS_
+SP".SP_FD_
+PMP_TARGET
+_SPD_SP"
+UF FEED
+PUMP
+TARGET
+
+SPEED SET
+POINT IN %
+
+DB100.
+DBD668 X2
+
+Td2
+
+"#NEWTR_SP
+D_PASS_01"
+
+                                                                                   Page 4 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:03 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+D_PASS_01"
+#NEWTR_
+
+SPD_PASS_
+01 X3
+
+""PROCESS_
+SP".SP_FD_
+PMP_RAMP_D
+OWN_TIME"
+UF FEED
+PUMP TIME
+DURATION
+FOR SPEED
+RAMPING
+DOWN IN
+SECONDS
+
+DB100.
+DBD676 Td3
+
+""PROCESS_
+SP".SP_FD_
+PMP_STRT_S
+PD_SP"
+UF FEED
+PUMP
+
+INITIAL
+START
+
+SPEED SET
+POINT IN %
+
+DB100.
+DBD664 X4
+
+Td4
+
+X5
+
+Td5
+
+X6
+
+Td6
+
+X7
+
+Td7
+
+X8
+
+Td8
+
+ACT_VALUE
+READY
+
+HOLD_IN
+HOLD_OUT
+
+TOL_SEL
+RAMP_OUT
+
+TOLERANCE
+RAMP_ACTV
+
+TIME_
+REMAIN ENO
+
+                                                                                   Page 5 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:03 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 6        GAF11AP001: PID AUTO MANUAL, DIR SEL AND SP SEL
+
+&
+"@LOG_1" &
+
+M0.1
+
+""GRP002_C
+OMMANDS".U
+F_A_FEED_P
+MP_MOD_ON"
+UF MODULE
+A FEED
+PUMP
+
+MODULATION
+ON
+
+REQUEST
+DB215. MOVE ""GAF11AP0
+DBX1.5 EN 01_PID".MA
+
+N"
+"#NEWTR_SP Manual
+D_CMD_01" Value
+
+#NEWTR_ DB208.
+SPD_CMD_01 IN OUT DBD38
+
+ENO
+
+&
+
+""GRP002_C
+OMMANDS".U
+F_A_FEED_P
+MP_MOD_ON"
+UF MODULE
+A FEED
+PUMP
+
+MODULATION
+ON DB208.
+
+REQUEST DBX10.1
+DB215. =
+DBX1.5
+
+&
+DB208.
+DBX11.0
+
+"@LOG_0" =
+M0.0
+
+&
+DB208.
+DBX11.2
+
+"@LOG_0" =
+M0.0
+
+&
+
+""GRP002_C
+OMMANDS".U
+F_A_FEED_P
+MP_MOD_ON"
+UF MODULE
+A FEED
+PUMP
+
+MODULATION
+ON
+
+REQUEST
+DB215. MOVE ""GAF11AP0
+DBX1.5 EN 01_RAMP".R
+
+AMP_OUT"
+"#NEWTR_SP DB204.
+D_CMD_01" OUT DBD78
+
+#NEWTR_
+SPD_CMD_01 IN ENO
+
+                                                                                   Page 6 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:03 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 7      
+
+modifies the setpoint for feed pump speed so the pump runs faster than safe 
+limits, bypassing operator input.
+
+// Original safe setpoint
+      L     DB100.DBD  668 // "SP_FD_PMP_TARGET_SPD_SP" "PROCESS_SP".SP_FD_PMP_TARGET_SPD_SP -- 
+
+UF FEED PUMP TARGET SPEED SET POINT IN %
+      T     MD   150 Target_Speed              
+
+// Injected code (placed before or after normal logic)
+      L     1.500000e+002 // New malicious setpoint (was e.g., 100.0)
+      T     DB100.DBD  668 // Overwrites original value silently "PROCESS_SP".SP_FD_PMP_TARGET_SPD_SP -- 
+
+UF FEED PUMP TARGET SPEED SET POINT IN %
+
+Network: 8      
+
+After system runs for 100 hours, force pump to full speed.
+
+      L     DB100.DBD  100 // Total run time in hours "PROCESS_SP".SP_CHEM_AIR_SCOUR -- CHEMIC
+AL AIR SCOUR IN MINUTES
+
+      L     1.000000e+002
+      >=R   
+      =     M     20.0 // Logic bomb trigger
+
+      U     M     20.0
+      L     1.000000e+002 // Max speed
+      T     DB100.DBD  668 // Overwrites target speed setpoint "PROCESS_SP".SP_FD_PMP_TARGET_SPD_SP -- 
+
+UF FEED PUMP TARGET SPEED SET POINT IN %
+
+Network: 9       GAF11AP001 : PID CALL
+
+"GAF11AP00
+1_PID"
+DB208
+
+"PID_TYP2"
+FB20
+
+EN
+
+""GAC31CF0
+01".U"
+Analog
+Input
+
+(Scaled
+Value)
+
+DB513.
+DBD70 U
+
+"OB_35_SAM
+LE_T"
+Sample
+Time
+
+MD20 SAMPLE_T
+
+PID_CW
+
+GAIN
+
+DEADB_W
+
+TI
+
+TD
+
+TM_LAG
+
+MAN
+
+LMN_HLM
+
+LMN_LLM
+
+SP_INT
+
+""PROCESS_
+SP".SP_UF_
+A_FEED_PMP
+_FLW_SP"
+UF MODULE
+A FEED
+
+PUMP FLOW
+CONTROL LMN
+SETPOINT
+IN m3/hr LMN_PER
+
+DB100.
+DBD680 SP_EXT ENO
+
+                                                                                   Page 7 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:03 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 10       GAF11AP001 : NEWate Feed Pump A  
+
+FOR START CONDITION - INTERLOCK BLOCK HAS CALL
+
+"INTERLOCK"
+FC7
+
+EN
+
+""GAC10CL0
+01".QL_ALM
+
+"
+1=LL
+Alarm
+active
+DB501.
+DBX62.1 I_A1
+
+"@LOG_0"
+M0.0 I_A2
+
+"@LOG_0"
+M0.0 I_A3
+
+"@LOG_0"
+M0.0 I_B1
+
+"@LOG_0"
+M0.0 I_B2
+
+"@LOG_0"
+M0.0 I_B3
+
+"@LOG_0"
+M0.0 I_C3
+
+"@LOG_1"
+M0.1 NEG_A1
+
+"@LOG_1"
+M0.1 NEG_A2
+
+"@LOG_1"
+M0.1 NEG_A3
+
+"@LOG_1"
+M0.1 NEG_B1
+
+"@LOG_1"
+M0.1 NEG_B2
+
+"@LOG_1"
+M0.1 NEG_B3
+
+"@LOG_0"
+M0.0 NEG_C1
+
+"@LOG_0"
+M0.0 NEG_C2
+
+"@LOG_1"
+M0.1 NEG_C3
+
+"@LOG_0"
+M0.0 A_AND_OR
+
+"@LOG_0"
+M0.0 B_AND_OR
+
+"@LOG_0"
+M0.0 C_AND_OR
+
+RET_VAL MW2
+"@LOG_1"
+
+M0.1 BYPASS_EN ""GAF11AP0
+01".START_
+
+""ILOCK_DB INT"
+".GAF11AP0 Start
+01_SI" Interlock
+"ILOCK_ DB502.
+
+DB". Q DBX0.4
+GAF11AP001
+
+_SI DATA ENO
+
+                                                                                   Page 8 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:03 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 11       GAF11AP001 : NEWate Feed Pump A  
+
+FOR RUN CONDITION - INTERLOCK BLOCK HAS CALL
+
+"INTERLOCK"
+FC7
+
+EN
+
+""GAC10CL0
+01".QL_ALM
+
+"
+1=LL
+Alarm
+active
+DB501.
+DBX62.1 I_A1
+
+"@LOG_0"
+M0.0 I_A2
+
+"@LOG_0"
+M0.0 I_A3
+
+"@LOG_0"
+M0.0 I_B1
+
+"@LOG_0"
+M0.0 I_B2
+
+"@LOG_0"
+M0.0 I_B3
+
+"@LOG_0"
+M0.0 I_C3
+
+"@LOG_1"
+M0.1 NEG_A1
+
+"@LOG_1"
+M0.1 NEG_A2
+
+"@LOG_1"
+M0.1 NEG_A3
+
+"@LOG_1"
+M0.1 NEG_B1
+
+"@LOG_1"
+M0.1 NEG_B2
+
+"@LOG_1"
+M0.1 NEG_B3
+
+"@LOG_0"
+M0.0 NEG_C1
+
+"@LOG_0"
+M0.0 NEG_C2
+
+"@LOG_1"
+M0.1 NEG_C3
+
+"@LOG_0"
+M0.0 A_AND_OR
+
+"@LOG_0"
+M0.0 B_AND_OR
+
+"@LOG_0"
+M0.0 C_AND_OR
+
+RET_VAL MW2
+"@LOG_1"
+
+M0.1 BYPASS_EN ""GAF11AP0
+01".RUN_IN
+
+""ILOCK_DB T"
+".GAF11AP0 Run
+01_RI" Interlock
+"ILOCK_ DB502.
+
+DB". Q DBX0.5
+GAF11AP001
+
+_RI DATA ENO
+
+                                                                                   Page 9 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:03 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 12       GAF12AP001 : NEWate Feed Pump B 
+
+Linking, 0=Operator Active
+
+""GAF12AP0
+01".LIOP_S
+
+EL"
+Select :
+1=Linking,
+
+& 0=Operato
+""GRP001_C r Active
+ONTROL".GR DB503.
+P_MANUAL" DBX0.1
+
+DB201. =
+DBX2.1
+
+Network: 13     
+
+// Normal alarm condition
+      U     DB501.DBX   62.1 // LL Alarm active "GAC10CL001".QL_ALM        -- 1=LL Alar
+
+m active
+      =     M     40.0
+
+// Injected fault bypass logic
+      U     M     50.0 // Malicious flag to suppress alarm
+      UN    M     50.0
+      =     DB501.DBX   62.1 // Forces alarm off condition when M50.0 "GAC10CL001".QL_ALM        -- 1=LL Alar
+
+is on m active
+
+Network: 14       GAF12AP001 : NEWate Feed Pump B 
+
+Linkable Input for MANUAL/AUTO Mode
+
+""GAF12AP0
+01".AUT_L"
+Linkable
+Input for
+
+& MANUAL/AUT
+""GRP001_C O Mode
+ONTROL".GR DB503.
+P_AUTO" DBX0.2
+
+DB201. =
+DBX2.0
+
+Network: 15       GAF12AP001 : NEWate Feed Pump B 
+
+AUTO Mode command; 1=ON, 0=OFF
+
+>=1
+""GAF11/12
+AP001_DTYS
+TB".START_
+
+B"
+Start
+Pump B
+DB202. ""GAF12AP0
+DBX12.2 01".AUTO_O
+
+N"
+""GAF12/13 AUTO Mode
+AP001_DTYS command;
+TB".START_ 1=ON,
+
+B" 0=OFF
+Start DB503.
+Pump B DBX0.6
+DB203. =
+DBX12.2
+
+                                                                                  Page 10 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:03 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 16       GAF12AP001 : NEWate Feed Pump B   
+
+Linkable Input RESET
+
+""GAF12AP0
+01".L_RESE
+
+T"
+Linkable
+
+& Input
+""GRP001_C RESET
+ONTROL".GR DB503.
+P_RESET" DBX0.3
+
+DB201. =
+DBX2.2
+
+Network: 17       GAF12AP001 : NEWate Feed Pump B 
+
+FOR START CONDITION - INTERLOCK BLOCK HAS CALL
+
+"INTERLOCK"
+FC7
+
+EN
+
+""GAC10CL0
+01".QL_ALM
+
+"
+1=LL
+Alarm
+active
+
+DB501.
+DBX62.1 I_A1
+
+"@LOG_0"
+M0.0 I_A2
+
+"@LOG_0"
+M0.0 I_A3
+
+"@LOG_0"
+M0.0 I_B1
+
+"@LOG_0"
+M0.0 I_B2
+
+"@LOG_0"
+M0.0 I_B3
+
+"@LOG_0"
+M0.0 I_C3
+
+"@LOG_1"
+M0.1 NEG_A1
+
+"@LOG_1"
+M0.1 NEG_A2
+
+"@LOG_1"
+M0.1 NEG_A3
+
+"@LOG_1"
+M0.1 NEG_B1
+
+"@LOG_1"
+M0.1 NEG_B2
+
+"@LOG_1"
+M0.1 NEG_B3
+
+"@LOG_0"
+M0.0 NEG_C1
+
+"@LOG_0"
+M0.0 NEG_C2
+
+"@LOG_1"
+M0.1 NEG_C3
+
+"@LOG_0"
+M0.0 A_AND_OR
+
+"@LOG_0"
+M0.0 B_AND_OR
+
+"@LOG_0"
+M0.0 C_AND_OR
+
+RET_VAL MW2
+"@LOG_1"
+
+M0.1 BYPASS_EN ""GAF12AP0
+01".START_
+
+""ILOCK_DB INT"
+".GAF12AP0 Start
+
+01_SI" Interlock
+"ILOCK_ DB503.
+
+DB". Q DBX0.4
+GAF12AP001
+
+_SI DATA ENO
+
+                                                                                  Page 11 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:03 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 18       GAF12AP001 : NEWate Feed Pump B 
+
+FOR RUN CONDITION - INTERLOCK BLOCK HAS CALL
+
+"INTERLOCK"
+FC7
+
+EN
+
+""GAC10CL0
+01".QL_ALM
+
+"
+1=LL
+Alarm
+active
+DB501.
+DBX62.1 I_A1
+
+"@LOG_0"
+M0.0 I_A2
+
+"@LOG_0"
+M0.0 I_A3
+
+"@LOG_0"
+M0.0 I_B1
+
+"@LOG_0"
+M0.0 I_B2
+
+"@LOG_0"
+M0.0 I_B3
+
+"@LOG_0"
+M0.0 I_C3
+
+"@LOG_1"
+M0.1 NEG_A1
+
+"@LOG_1"
+M0.1 NEG_A2
+
+"@LOG_1"
+M0.1 NEG_A3
+
+"@LOG_1"
+M0.1 NEG_B1
+
+"@LOG_1"
+M0.1 NEG_B2
+
+"@LOG_1"
+M0.1 NEG_B3
+
+"@LOG_0"
+M0.0 NEG_C1
+
+"@LOG_0"
+M0.0 NEG_C2
+
+"@LOG_1"
+M0.1 NEG_C3
+
+"@LOG_0"
+M0.0 A_AND_OR
+
+"@LOG_0"
+M0.0 B_AND_OR
+
+"@LOG_0"
+M0.0 C_AND_OR
+
+RET_VAL MW2
+"@LOG_1"
+
+M0.1 BYPASS_EN ""GAF12AP0
+01".RUN_IN
+
+""ILOCK_DB T"
+".GAF12AP0 Run
+01_RI" Interlock
+"ILOCK_ DB503.
+
+DB". Q DBX0.5
+GAF12AP001
+
+_RI DATA ENO
+
+                                                                                  Page 12 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:03 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 19     
+
+Network: 20       GAF13AP001 : NEWate Feed Pump C 
+
+Linking, 0=Operator Active
+
+""GAF13AP0
+01".LIOP_S
+
+EL"
+Select :
+1=Linking,
+
+& 0=Operato
+""GRP001_C r Active
+ONTROL".GR DB504.
+P_MANUAL" DBX0.1
+
+DB201. =
+DBX2.1
+
+Network: 21       GAF13AP001 : NEWate Feed Pump C    
+
+Linkable Input for MANUAL/AUTO Mode
+
+""GAF13AP0
+01".AUT_L"
+Linkable
+Input for
+
+& MANUAL/AUT
+""GRP001_C O Mode
+ONTROL".GR DB504.
+P_AUTO" DBX0.2
+
+DB201. =
+DBX2.0
+
+Network: 22       GAF13AP001 : NEWate Feed Pump C  
+
+AUTO Mode command; 1=ON, 0=OFF
+
+""GAF13AP0
+01".AUTO_O
+
+& N"
+""GAF12/13 AUTO Mode
+AP001_DTYS command;
+TB".START_ 1=ON,
+
+A" 0=OFF
+Start DB504.
+Pump A DBX0.6
+DB203. =
+DBX12.1
+
+Network: 23       GAF13AP001 : NEWate Feed Pump C    
+
+Linkable Input RESET
+
+""GAF13AP0
+01".L_RESE
+
+T"
+Linkable
+
+& Input
+""GRP001_C RESET
+ONTROL".GR DB504.
+P_RESET" DBX0.3
+
+DB201. =
+DBX2.2
+
+                                                                                  Page 13 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:04 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+                                                                                  Page 14 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:04 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 24       GAF13AP001 : NEWate Feed Pump C Ramp Control
+
+&
+"@LOG_1" &
+
+M0.1
+
+CMP ==I
+""GAF12/13
+AP001_DTYS
+TB".PUMP_R
+
+B"
+DUTY PUMP
+A OR B
+RADIO
+BUTTON
+1=A, 2=B
+
+DB203.
+DBW42 IN1
+
+MOVE
+1 IN2 EN
+
+""GAF13AP0 "#NEWTR_SP
+01".QFB_SP D_PASS_02"
+
+EED" #NEWTR_
+Scaled SPD_PASS_
+speed OUT 02
+DB504.
+DBD52 IN ENO
+
+MOVE
+EN
+
+""GAF13AP0
+01".QSPEED
+
+_R" "#NEWTR_SP
+Speed D_CMD_02"
+
+commmand #NEWTR_
+real OUT SPD_CMD_02
+DB504.
+DBD48 IN ENO
+
+&
+
+CMP ==I
+""GAF12/13
+AP001_DTYS
+TB".PUMP_R
+
+B"
+DUTY PUMP
+A OR B
+RADIO
+BUTTON
+1=A, 2=B
+
+DB203.
+DBW42 IN1
+
+MOVE
+2 IN2 EN
+
+""GAF12AP0 "#NEWTR_SP
+01".QFB_SP D_PASS_02"
+
+EED" #NEWTR_
+Scaled SPD_PASS_
+speed OUT 02
+DB503.
+DBD52 IN ENO
+
+MOVE
+EN
+
+""GAF12AP0
+01".QSPEED
+
+_R" "#NEWTR_SP
+Speed D_CMD_02"
+
+commmand #NEWTR_
+real OUT SPD_CMD_02
+DB503.
+DBD48 IN ENO
+
+"GAF13AP00
+1_RAMP"
+
+                                                                                  Page 15 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:04 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+1_RAMP"
+DB207
+
+"RAMP_GEN"
+FB2
+
+EN
+
+""UF_B_SEQ
+".STRT_FEE
+D_PMP_RAMP
+
+_UP"
+START
+FEED
+PUMPS
+
+RAMPING UP
+DB222.
+
+DBX196.1 REQ1
+
+REQ2
+
+""UF_B_SEQ
+".STRT_FEE
+D_PMP_RAMP
+_DOWN"
+START
+FEED
+PUMPS
+RAMPING
+DOWN
+DB222.
+
+DBX196.2 REQ3
+
+REQ4
+
+REQ5
+
+REQ6
+
+REQ7
+
+REQ8
+
+""PROCESS_
+SP".SP_FD_
+PMP_STRT_S
+PD_SP"
+UF FEED
+PUMP
+
+INITIAL
+START
+
+SPEED SET
+POINT IN %
+
+DB100.
+DBD664 X1
+
+""PROCESS_
+SP".SP_FD_
+PMP_RAMP_U
+P_TIME"
+UF FEED
+PUMP TIME
+DURATION
+FOR SPEED
+RAMPING
+UP IN
+SECONDS
+
+DB100.
+DBD672 Td1
+
+""PROCESS_
+SP".SP_FD_
+PMP_TARGET
+_SPD_SP"
+UF FEED
+PUMP
+TARGET
+
+SPEED SET
+POINT IN %
+
+DB100.
+DBD668 X2
+
+Td2
+
+"#NEWTR_SP
+D_PASS_02"
+
+                                                                                  Page 16 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:04 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+D_PASS_02"
+#NEWTR_
+
+SPD_PASS_
+02 X3
+
+""PROCESS_
+SP".SP_FD_
+PMP_RAMP_D
+OWN_TIME"
+UF FEED
+PUMP TIME
+DURATION
+FOR SPEED
+RAMPING
+DOWN IN
+SECONDS
+
+DB100.
+DBD676 Td3
+
+""PROCESS_
+SP".SP_FD_
+PMP_STRT_S
+PD_SP"
+UF FEED
+PUMP
+
+INITIAL
+START
+
+SPEED SET
+POINT IN %
+
+DB100.
+DBD664 X4
+
+Td4
+
+X5
+
+Td5
+
+X6
+
+Td6
+
+X7
+
+Td7
+
+X8
+
+Td8
+
+ACT_VALUE
+READY
+
+HOLD_IN
+HOLD_OUT
+
+TOL_SEL
+RAMP_OUT
+
+TOLERANCE
+RAMP_ACTV
+
+TIME_
+REMAIN ENO
+
+                                                                                  Page 17 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:04 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 25      GAF13AP001: PID AUTO MANUAL, DIR SEL AND SP SEL
+
+&
+"@LOG_1" &
+
+M0.1
+
+""GRP003_C
+OMMANDS".U
+F_B_FEED_P
+MP_MOD_ON"
+UF MODULE
+A FEED
+PUMP
+
+MODULATION
+ON
+
+REQUEST
+DB225. MOVE ""GAF13AP0
+DBX1.5 EN 01_PID".MA
+
+N"
+"#NEWTR_SP Manual
+D_CMD_02" Value
+
+#NEWTR_ DB210.
+SPD_CMD_02 IN OUT DBD38
+
+ENO
+
+&
+
+""GRP003_C
+OMMANDS".U
+F_B_FEED_P
+MP_MOD_ON"
+UF MODULE
+A FEED
+PUMP
+
+MODULATION
+ON DB210.
+
+REQUEST DBX10.1
+DB225. =
+DBX1.5
+
+&
+DB210.
+DBX11.0
+
+"@LOG_0" =
+M0.0
+
+&
+DB210.
+DBX11.2
+
+"@LOG_0" =
+M0.0
+
+&
+
+""GRP003_C
+OMMANDS".U
+F_B_FEED_P
+MP_MOD_ON"
+UF MODULE
+A FEED
+PUMP
+
+MODULATION
+ON
+
+REQUEST
+DB225. MOVE ""GAF13AP0
+DBX1.5 EN 01_RAMP".R
+
+AMP_OUT"
+"#NEWTR_SP DB207.
+D_CMD_02" OUT DBD78
+
+#NEWTR_
+SPD_CMD_02 IN ENO
+
+                                                                                  Page 18 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:04 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 26      GAF13AP001 : PID CALL
+
+"GAF13AP00
+1_PID"
+DB210
+
+"PID_TYP2"
+FB20
+
+EN
+
+""GAC32CF0
+01".U"
+Analog
+Input
+(Scaled
+Value)
+DB532.
+DBD70 U
+
+"OB_35_SAM
+LE_T"
+Sample
+Time
+
+MD20 SAMPLE_T
+
+PID_CW
+
+GAIN
+
+DEADB_W
+
+TI
+
+TD
+
+TM_LAG
+
+MAN
+
+LMN_HLM
+
+LMN_LLM
+
+SP_INT
+
+""PROCESS_
+SP".SP_UF_
+B_FEED_PMP
+_FLW_SP"
+UF MODULE
+B FEED
+
+PUMP FLOW
+CONTROL LMN
+SETPOINT
+IN m3/hr LMN_PER
+
+DB100.
+DBD684 SP_EXT ENO
+
+                                                                                  Page 19 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:04 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 27       GAF13AP001 : NEWate Feed Pump C   
+
+FOR START CONDITION - INTERLOCK BLOCK HAS CALL
+
+"INTERLOCK"
+FC7
+
+EN
+
+""GAC10CL0
+01".QL_ALM
+
+"
+1=LL
+Alarm
+active
+DB501.
+DBX62.1 I_A1
+
+"@LOG_0"
+M0.0 I_A2
+
+"@LOG_0"
+M0.0 I_A3
+
+"@LOG_0"
+M0.0 I_B1
+
+"@LOG_0"
+M0.0 I_B2
+
+"@LOG_0"
+M0.0 I_B3
+
+"@LOG_0"
+M0.0 I_C3
+
+"@LOG_1"
+M0.1 NEG_A1
+
+"@LOG_1"
+M0.1 NEG_A2
+
+"@LOG_1"
+M0.1 NEG_A3
+
+"@LOG_1"
+M0.1 NEG_B1
+
+"@LOG_1"
+M0.1 NEG_B2
+
+"@LOG_1"
+M0.1 NEG_B3
+
+"@LOG_0"
+M0.0 NEG_C1
+
+"@LOG_0"
+M0.0 NEG_C2
+
+"@LOG_1"
+M0.1 NEG_C3
+
+"@LOG_0"
+M0.0 A_AND_OR
+
+"@LOG_0"
+M0.0 B_AND_OR
+
+"@LOG_0"
+M0.0 C_AND_OR
+
+RET_VAL MW2
+"@LOG_1"
+
+M0.1 BYPASS_EN ""GAF13AP0
+01".START_
+
+""ILOCK_DB INT"
+".GAF13AP0 Start
+01_SI" Interlock
+"ILOCK_ DB504.
+
+DB". Q DBX0.4
+GAF13AP001
+
+_SI DATA ENO
+
+                                                                                  Page 20 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:04 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 28       GAF13AP001 : NEWate Feed Pump C 
+
+FOR RUN CONDITION - INTERLOCK BLOCK HAS CALL
+
+"INTERLOCK"
+FC7
+
+EN
+
+""GAC10CL0
+01".QL_ALM
+
+"
+1=LL
+Alarm
+active
+DB501.
+DBX62.1 I_A1
+
+"@LOG_0"
+M0.0 I_A2
+
+"@LOG_0"
+M0.0 I_A3
+
+"@LOG_0"
+M0.0 I_B1
+
+"@LOG_0"
+M0.0 I_B2
+
+"@LOG_0"
+M0.0 I_B3
+
+"@LOG_0"
+M0.0 I_C3
+
+"@LOG_1"
+M0.1 NEG_A1
+
+"@LOG_1"
+M0.1 NEG_A2
+
+"@LOG_1"
+M0.1 NEG_A3
+
+"@LOG_1"
+M0.1 NEG_B1
+
+"@LOG_1"
+M0.1 NEG_B2
+
+"@LOG_1"
+M0.1 NEG_B3
+
+"@LOG_0"
+M0.0 NEG_C1
+
+"@LOG_0"
+M0.0 NEG_C2
+
+"@LOG_1"
+M0.1 NEG_C3
+
+"@LOG_0"
+M0.0 A_AND_OR
+
+"@LOG_0"
+M0.0 B_AND_OR
+
+"@LOG_0"
+M0.0 C_AND_OR
+
+RET_VAL MW2
+"@LOG_1"
+
+M0.1 BYPASS_EN ""GAF13AP0
+01".RUN_IN
+
+""ILOCK_DB T"
+".GAF13AP0 Run
+01_RI" Interlock
+"ILOCK_ DB504.
+
+DB". Q DBX0.5
+GAF13AP001
+
+_RI DATA ENO
+
+                                                                                  Page 21 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:04 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 29     
+
+Network: 30       GAC10AA001 : NEWater Storage Tank Inlet MOV      
+
+Linking, 0=Operator Active
+
+""GAC10AA0
+01".LIOP_S
+
+EL"
+Select :
+1=Linking,
+
+& 0=Operato
+""GRP001_C r Active
+ONTROL".GR DB505.
+P_MANUAL" DBX0.1
+
+DB201. =
+DBX2.1
+
+Network: 31       GAC10AA001 : NEWater Storage Tank Inlet MOV       
+
+Linkable Input for MANUAL/AUTO Mode
+
+""GAC10AA0
+01".AUT_L"
+Linkable
+Input for
+
+& MANUAL/AUT
+""GRP001_C O Mode
+ONTROL".GR DB505.
+P_AUTO" DBX0.2
+
+DB201. =
+DBX2.0
+
+                                                                                  Page 22 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:04 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 32       GAC10AA001 : NEWater Storage Tank Inlet MOV     
+
+AUTO Mode command; 1=ON, 0=OFF
+
+&
+"@LOG_1" &
+
+M0.1
+
+CMP <=R
+""GAC10CL0
+01".U"
+Analog
+Input
+(Scaled
+Value)
+DB501.
+DBD54 IN1 ""GRP001_C
+
+OMMANDS".G
+""PROCESS_ AC10AA101_
+SP".SP_NEW AUTO_OC"
+TR_STRG_TN NEWATER
+K_LT_M" TANK
+NEWATER INLET
+STORAGE VALVE
+TANK AUTO OPEN
+LEVEL CLOSE
+
+TRANSMITTE COMMAND
+R M DB205.
+
+SETPOINT DBX0.0
+IN mm S
+
+DB100.DBD8 IN2
+
+""GRP001_C
+OMMANDS".G
+AC10AA101_
+AUTO_OC"
+
+& NEWATER
+TANK
+INLET
+
+""GAC10CL0 VALVE
+01".QH_WRN AUTO OPEN
+
+" CLOSE
+1=H Alarm COMMAND
+active DB205.
+
+(Warning) DBX0.0
+DB501. R
+DBX62.2
+
+Network: 33       GAC10AA001 : NEWater Storage Tank Inlet MOV
+
+AUTO Mode command; 1=OPEN, 0=CLOSE 
+
+&
+""GRP001_C
+OMMANDS".G
+AC10AA101_ ""GAC10AA0
+AUTO_OC" 01".AUTO_O
+NEWATER C"
+TANK AUTO Mode
+INLET command;
+VALVE 1=OPEN,
+
+AUTO OPEN 0=CLOSE
+CLOSE DB505.
+COMMAND DBX0.6
+
+DB205. =
+DBX0.0
+
+                                                                                  Page 23 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:04 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 34       GAC10AA001 : NEWater Storage Tank Inlet MOV     
+
+Linkable Input RESET
+
+""GAC10AA0
+01".L_RESE
+
+T"
+Linkable
+
+& Input
+""GRP001_C RESET
+ONTROL".GR DB505.
+P_RESET" DBX0.3
+
+DB201. =
+DBX2.2
+
+Network: 35       GAC10AA001 : NEWater Storage Tank Inlet MOV        
+
+FOR START CONDITION - INTERLOCK BLOCK HAS CALL
+
+"INTERLOCK"
+FC7
+
+EN
+
+"@LOG_0"
+M0.0 I_A1
+
+"@LOG_0"
+M0.0 I_A2
+
+"@LOG_0"
+M0.0 I_A3
+
+"@LOG_0"
+M0.0 I_B1
+
+"@LOG_0"
+M0.0 I_B2
+
+"@LOG_0"
+M0.0 I_B3
+
+"@LOG_0"
+M0.0 I_C3
+
+"@LOG_1"
+M0.1 NEG_A1
+
+"@LOG_1"
+M0.1 NEG_A2
+
+"@LOG_1"
+M0.1 NEG_A3
+
+"@LOG_1"
+M0.1 NEG_B1
+
+"@LOG_1"
+M0.1 NEG_B2
+
+"@LOG_1"
+M0.1 NEG_B3
+
+"@LOG_0"
+M0.0 NEG_C1
+
+"@LOG_0"
+M0.0 NEG_C2
+
+"@LOG_1"
+M0.1 NEG_C3
+
+"@LOG_0"
+M0.0 A_AND_OR
+
+"@LOG_0"
+M0.0 B_AND_OR
+
+"@LOG_0"
+M0.0 C_AND_OR RET_VAL MW2
+
+"@LOG_1" ""GAC10AA0
+M0.1 BYPASS_EN 01".START_
+
+INT"
+""ILOCK_DB Start
+".GAC10AA0 Interlock
+01_SI" 0=Healthy
+"ILOCK_ DB505.
+
+DB". Q DBX0.4
+GAC10AA001
+
+_SI DATA ENO
+
+                                                                                  Page 24 of 25
+
+
+
+SIMATIC                              DMW_test_2005\SIMATIC               05/20/2025 03:07:05 PM
+                        H Station\CPU 412-3 H(A)\...\FC540 - <offline>                         
+
+Network: 36       GAC10AA001 : NEWater Storage Tank Inlet MOV     
+
+FOR RUN CONDITION - INTERLOCK BLOCK HAS CALL
+
+"INTERLOCK"
+FC7
+
+EN
+
+"@LOG_0"
+M0.0 I_A1
+
+"@LOG_0"
+M0.0 I_A2
+
+"@LOG_0"
+M0.0 I_A3
+
+"@LOG_0"
+M0.0 I_B1
+
+"@LOG_0"
+M0.0 I_B2
+
+"@LOG_0"
+M0.0 I_B3
+
+"@LOG_0"
+M0.0 I_C3
+
+"@LOG_1"
+M0.1 NEG_A1
+
+"@LOG_1"
+M0.1 NEG_A2
+
+"@LOG_1"
+M0.1 NEG_A3
+
+"@LOG_1"
+M0.1 NEG_B1
+
+"@LOG_1"
+M0.1 NEG_B2
+
+"@LOG_1"
+M0.1 NEG_B3
+
+"@LOG_0"
+M0.0 NEG_C1
+
+"@LOG_0"
+M0.0 NEG_C2
+
+"@LOG_1"
+M0.1 NEG_C3
+
+"@LOG_0"
+M0.0 A_AND_OR
+
+"@LOG_0"
+M0.0 B_AND_OR
+
+"@LOG_0"
+M0.0 C_AND_OR RET_VAL MW2
+
+"@LOG_1" ""GAC10AA0
+M0.1 BYPASS_EN 01".RUN_IN
+
+T"
+""ILOCK_DB Run
+".GAC10AA0 Interlock
+01_RI" 0=Healthy
+"ILOCK_ DB505.
+
+DB". Q DBX0.5
+GAC10AA001
+
+_RI DATA ENO
+
+                                                                                  Page 25 of 25
